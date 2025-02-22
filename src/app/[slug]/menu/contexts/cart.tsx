@@ -7,16 +7,23 @@ interface CartProduct extends Product {
   quantity: number;
 }
 
+interface CartProduct
+  extends Pick<Product, "id" | "name" | "price" | "imageUrl"> {
+  quantity: number;
+}
+
 export interface CartContextData {
   isOpen: boolean;
   products: CartProduct[];
   toggleCart: () => void;
+  addProduct: (product: CartProduct) => void;
 }
 
 export const CartContext = createContext<CartContextData>({
   isOpen: false,
   products: [],
   toggleCart: () => {},
+  addProduct: () => {},
 });
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
@@ -25,8 +32,12 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const toggleCart = () => {
     setIsOpen((prev) => !prev);
   };
+
+  const addProduct = (product: CartProduct) => {
+    setProducts((prev) => [...prev, product]);
+  };
   return (
-    <CartContext.Provider value={{ isOpen, products, toggleCart }}>
+    <CartContext.Provider value={{ isOpen, products, toggleCart, addProduct }}>
       {children}
     </CartContext.Provider>
   );
