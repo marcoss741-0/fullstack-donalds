@@ -4,9 +4,11 @@ import { Prisma } from "@prisma/client";
 import { ChefHatIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import { useContext, useState } from "react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+//import { Toaster } from "@/components/ui/sonner";
 import { formatCurrency } from "@/helpers/format-currency";
 
 import CartSheet from "../../components/cart-sheet";
@@ -46,7 +48,13 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
       quantity,
     });
     toggleCart();
+
+    toast.success("Produto adicionado!", {
+      description: `${quantity}x ${product.name} foi adicionado à sua sacola`,
+      duration: 2000,
+    });
   };
+  const totalPrice = product.price * quantity;
   return (
     <>
       <div className="relative rounded-t-3xl mt-[-1.5rem] py-5 z-50 p-4 flex flex-col flex-auto overflow-hidden">
@@ -114,10 +122,10 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
         <Button
           variant="default"
           onClick={handleAddToCart}
-          className="w-full rounded-full py-3"
+          className="w-full rounded-full py-3 transition-transform active:scale-95"
           size="lg"
         >
-          Adicionar á sacola
+          Adicionar à sacola • {formatCurrency(totalPrice)}
         </Button>
       </div>
       <CartSheet />
