@@ -17,7 +17,7 @@ export interface CartContextData {
   products: CartProduct[];
   toggleCart: () => void;
   addProduct: (product: CartProduct) => void;
-  removeProduct: (productId: string) => void; // Precisamos adicionar isso
+  removeProduct: (productId: string) => void;
 }
 
 export const CartContext = createContext<CartContextData>({
@@ -25,7 +25,7 @@ export const CartContext = createContext<CartContextData>({
   products: [],
   toggleCart: () => {},
   addProduct: () => {},
-  removeProduct: () => {}, // Precisamos adicionar isso
+  removeProduct: () => {},
 });
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {

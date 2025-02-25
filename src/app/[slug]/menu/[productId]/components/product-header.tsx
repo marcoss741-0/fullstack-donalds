@@ -1,4 +1,5 @@
 "use client";
+
 import { Product } from "@prisma/client";
 import { Pick } from "@prisma/client/runtime/library";
 import { ChevronLeft, ScrollTextIcon } from "lucide-react";

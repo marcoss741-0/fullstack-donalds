@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 
 import { db } from "@/lib/prisma";
 
+import { CartProvider } from "../contexts/cart";
 import ProductDetails from "./components/product-details";
 import ProductHeader from "./components/product-header";
 
@@ -28,10 +29,12 @@ const ProductPage = async ({ params }: ProductPageProps) => {
   }
   return (
     <>
-      <div className="flex flex-col h-full">
-        <ProductHeader product={product} />
-        <ProductDetails product={product} />
-      </div>
+      <CartProvider>
+        <div className="flex flex-col h-full">
+          <ProductHeader product={product} />
+          <ProductDetails product={product} />
+        </div>
+      </CartProvider>
     </>
   );
 };

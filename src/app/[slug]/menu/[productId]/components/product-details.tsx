@@ -8,7 +8,6 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-//import { Toaster } from "@/components/ui/sonner";
 import { formatCurrency } from "@/helpers/format-currency";
 
 import CartSheet from "../../components/cart-sheet";
@@ -125,7 +124,7 @@ const ProductDetail = ({ product }: ProductDetailProps) => {
           className="w-full rounded-full py-3 transition-transform active:scale-95"
           size="lg"
         >
-          Adicionar à sacola • {formatCurrency(totalPrice)}
+          Adicionar á Sacola • {formatCurrency(totalPrice)}
         </Button>
       </div>
       <CartSheet />
